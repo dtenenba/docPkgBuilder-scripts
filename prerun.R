@@ -6,6 +6,15 @@
 ## a package. Later, we will create a package if necessary
 ## from just a directory containing Rmd files (and images, etc).
 
+userdir <- unlist(strsplit(Sys.getenv("R_LIBS_USER"),
+                                   .Platform$path.sep))[1L]
+
+print("userdir is:")
+print(userdir)
+
+
+foo <- function()
+{
 instPkgs <- installed.packages()
 
 if (!"BiocInstaller" %in% rownames(instPkgs))
@@ -17,3 +26,4 @@ if ("!knitr" %in% rownames(instPkgs))
     biocLite("knitr")
 
 
+}
