@@ -2,6 +2,10 @@
 
 set -e  # Exit immediately if a simple command exits with a non-zero status
 
+echo "TEMP = $TEMP"
+echo "TMP = $TMP"
+
+
 rm -f $WORKSPACE/*.tar.gz
 # uncomment this:
 #$HOME_OF_R/bin/Rscript $BUILDER_SCRIPTS/docPkgBuilder-scripts/prerun.R
