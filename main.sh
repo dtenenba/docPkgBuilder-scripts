@@ -7,7 +7,7 @@ $HOME_OF_R/bin/Rscript $BUILDER_SCRIPTS/docPkgBuilder-scripts/prerun.R
 # uncomment this:
 ###$HOME_OF_R/bin/R CMD build $WORKSPACE
 # remove this:
-$HOME_OF_R/bin/R CMD build $ --no-vignettes WORKSPACE
+$HOME_OF_R/bin/R CMD build $ --no-vignettes $WORKSPACE
 # uncomment this:
 ###$HOME_OF_R/bin/R CMD check --no-vignettes *.tar.gz
 if [ "$NODE_NAME" == "master" ]
