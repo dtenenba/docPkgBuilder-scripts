@@ -8,7 +8,9 @@ rm -f $WORKSPACE/*.tar.gz
 # uncomment this:
 ###$HOME_OF_R/bin/R CMD build $WORKSPACE
 # remove this:
+echo "d0"
 $HOME_OF_R/bin/R CMD build $ --no-vignettes $WORKSPACE
+echo "d1"
 # uncomment this:
 ###$HOME_OF_R/bin/R CMD check --no-vignettes *.tar.gz
 if [ "$NODE_NAME" == "master" ]
