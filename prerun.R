@@ -14,6 +14,7 @@ print(userdir)
 
 
 instPkgs <- installed.packages()
+availPkgs <- available.packages(contrib.url(biocinstallRepos()))
 
 if (!"BiocInstaller" %in% rownames(instPkgs))
 {
@@ -24,7 +25,59 @@ if (!"BiocInstaller" %in% rownames(instPkgs))
 
 try(useDevel(), silent=TRUE)
 
-if ("!knitr" %in% rownames(instPkgs))
+if (!"knitr" %in% rownames(instPkgs))
     biocLite("knitr")
 
+dcf <- read.dcf(file.path(Sys.getenv("WORKSPACE"), "DESCRIPTION"))
 
+
+getPkgs <- function(field, dcf)
+{
+    if (!field %in% colnames(dcf))
+        return(character(0))
+    val <- dcf[, field]
+    val <- gsub("\\s+", "", val)
+    val <- gsub("\\(.+\\)", "", val)
+    cands <- strsplit(val, ",", TRUE)[[1]]
+    res <- c()
+    for (cand in cands)
+    {
+        if (cand != "R")
+        {
+            if ((!cand %in% rownames(instPkgs)) 
+                || (!grepl("^Part of R", instPkgs[cand, 'License'])))
+                res <- append(res, cand)
+        }
+    }
+    res
+}
+
+needToInstall <- function(pkgs)
+{
+    res <- c()
+    for (pkg in pkgs)
+    {
+        if (!pkg %in% rownames(instPkgs))
+        {
+            res <- append(res, TRUE)
+        } else {
+            installedVersion <- package_version(instPkgs[pkg, "Version"])
+            availableVersion <- package_version(availPkgs[pkg, "Version"])
+            res <- append(res, availableVersion  > installedVersion)
+        }
+    }
+    res
+}
+
+res <- c()
+for (category in c("Depends", "Imports", "Suggests", "Enhances"))
+{
+    res <- append(res, getPkgs(category, dcf))
+}
+
+installMe <- res[needToInstall(res)]
+if (length(installMe))
+{
+    print("Installing dependencies...")
+    biocLite(installMe)
+}
