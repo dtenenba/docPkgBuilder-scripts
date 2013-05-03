@@ -13,8 +13,6 @@ print("userdir is:")
 print(userdir)
 
 
-instPkgs <- installed.packages()
-availPkgs <- available.packages(contrib.url(biocinstallRepos()))
 
 if (!"BiocInstaller" %in% rownames(instPkgs))
 {
@@ -22,6 +20,10 @@ if (!"BiocInstaller" %in% rownames(instPkgs))
 } else {
     library(BiocInstaller)
 }
+
+instPkgs <- installed.packages()
+availPkgs <- available.packages(contrib.url(biocinstallRepos()))
+
 
 try(useDevel(), silent=TRUE)
 
