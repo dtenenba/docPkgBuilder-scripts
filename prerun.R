@@ -16,9 +16,11 @@ print(userdir)
 instPkgs <- installed.packages()
 
 if (!"BiocInstaller" %in% rownames(instPkgs))
+{
     source("http://bioconductor.org/biocLite.R")
-else
+} else {
     library(BiocInstaller)
+}
 
 if ("!knitr" %in% rownames(instPkgs))
     biocLite("knitr")
