@@ -13,6 +13,7 @@ $HOME_OF_R/bin/R CMD build $ --no-vignettes $WORKSPACE
 ###$HOME_OF_R/bin/R CMD check --no-vignettes *.tar.gz
 if [ "$NODE_NAME" == "master" ]
 then
+    echo "workspace is $WORKSPACE"
     cd $WORKSPACE
     rm -f library
     mkdir library
