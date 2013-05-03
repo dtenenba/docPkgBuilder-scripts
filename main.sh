@@ -19,8 +19,12 @@ then
 
     tar zxf *.tar.gz
     export pkg=`echo *.tar.gz | cut -d _ -f 1`
+    echo "pkg is:"
+    echo $pkg
     rm -f $pkg.Rcheck
     cd $pkg
+    echo "current directory:"
+    echo `pwd`
     if [ -d "vignettes" ]
     then
         cd vignettes
