@@ -22,6 +22,8 @@ if (!"BiocInstaller" %in% rownames(instPkgs))
     library(BiocInstaller)
 }
 
+try(useDevel(), silent=TRUE)
+
 if ("!knitr" %in% rownames(instPkgs))
     biocLite("knitr")
 
