@@ -10,7 +10,7 @@ rm -f $WORKSPACE/*.tar.gz
 # remove this:
 echo "d0"
 echo "workspace is $WORKSPACE"
-$HOME_OF_R/bin/R CMD build $ --no-vignettes $WORKSPACE
+$HOME_OF_R/bin/R CMD build --no-vignettes $WORKSPACE
 echo "d1"
 # uncomment this:
 ###$HOME_OF_R/bin/R CMD check --no-vignettes *.tar.gz
