@@ -13,8 +13,6 @@ print("userdir is:")
 print(userdir)
 
 
-foo <- function()
-{
 instPkgs <- installed.packages()
 
 if (!"BiocInstaller" %in% rownames(instPkgs))
@@ -26,4 +24,3 @@ if ("!knitr" %in% rownames(instPkgs))
     biocLite("knitr")
 
 
-}
