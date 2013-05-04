@@ -6,7 +6,7 @@ echo "TEMP = $TEMP"
 echo "TMP = $TMP"
 
 if [ -z "$TMP" ]; then
-    TMP = /tmp
+    TMP=/tmp
 fi
 
 CHECK_DIR=$TMP/$BUILD_TAG
