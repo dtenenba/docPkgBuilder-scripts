@@ -5,7 +5,7 @@ set -e  # Exit immediately if a simple command exits with a non-zero status
 echo "TEMP = $TEMP"
 echo "TMP = $TMP"
 
-if [[ -z "$TMP" ]]; then
+if [ -z "$TMP" ]; then
     TMP = /TMP
 fi
 
