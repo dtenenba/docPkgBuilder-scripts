@@ -26,13 +26,14 @@ echo "d1"
 # uncomment this:
 # cd $CHECK_DIR
 ###$HOME_OF_R/bin/R CMD check --no-vignettes $WORKSPACE/*.tar.gz
+# rm -rf $CHECK_DIR
 
 if [ "$NODE_NAME" = "master" ]; then
     echo "workspace is $WORKSPACE"
     cd $WORKSPACE
     rm -f library
     mkdir library
-    $HOME_OF_R/bin/R CMD INSTALL --library=library *.tar.gz
+    $HOME_OF_R/bin/R CMD INSTALL --library=library $WORKSPACE/*.tar.gz
 
     tar zxf *.tar.gz
     export pkg=`echo *.tar.gz | cut -d _ -f 1`
