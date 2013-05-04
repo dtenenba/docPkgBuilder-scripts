@@ -5,6 +5,13 @@ set -e  # Exit immediately if a simple command exits with a non-zero status
 echo "TEMP = $TEMP"
 echo "TMP = $TMP"
 
+if [[ -z "$TMP" ]]; then
+    TMP = /TMP
+fi
+
+CHECK_DIR=$TMP/$BUILD_TAG
+mkdir $CHECK_DIR
+
 
 rm -f $WORKSPACE/*.tar.gz
 # uncomment this:
@@ -17,8 +24,10 @@ echo "workspace is $WORKSPACE"
 $HOME_OF_R/bin/R CMD build --no-vignettes $WORKSPACE
 echo "d1"
 # uncomment this:
-###$HOME_OF_R/bin/R CMD check --no-vignettes *.tar.gz
-if [ "$NODE_NAME" == "master" ]; then
+# cd $CHECK_DIR
+###$HOME_OF_R/bin/R CMD check --no-vignettes $WORKSPACE/*.tar.gz
+
+if [ "$NODE_NAME" = "master" ]; then
     echo "workspace is $WORKSPACE"
     cd $WORKSPACE
     rm -f library
