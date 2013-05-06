@@ -28,7 +28,12 @@ availPkgs <- available.packages(contrib.url(biocinstallRepos()))
 try(useDevel(), silent=TRUE)
 
 if (!"knitr" %in% rownames(instPkgs))
+{
+    print("installing knitr")
     biocLite("knitr")
+} else {
+    print("not installing knitr")
+}
 
 dcf <- read.dcf(file.path(Sys.getenv("WORKSPACE"), "DESCRIPTION"))
 
