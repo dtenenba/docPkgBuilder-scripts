@@ -23,6 +23,9 @@ echo "d0"
 echo "workspace is $WORKSPACE"
 echo "current dir is"
 echo `pwd`
+cd $WORKSPACE
+echo "now current dir is"
+echo `pwd`
 $HOME_OF_R/bin/R CMD build --no-vignettes $WORKSPACE
 echo "d1"
 # uncomment this:
@@ -33,7 +36,7 @@ echo "d1"
 if [ "$NODE_NAME" = "master" ]; then
     echo "workspace is $WORKSPACE"
     cd $WORKSPACE
-    rm -f library
+    rm -rf library
     mkdir library
     $HOME_OF_R/bin/R CMD INSTALL --library=library $WORKSPACE/*.tar.gz
 
@@ -41,7 +44,7 @@ if [ "$NODE_NAME" = "master" ]; then
     export pkg=`echo *.tar.gz | cut -d _ -f 1`
     echo "pkg is:"
     echo $pkg
-    rm -f $pkg.Rcheck
+    rm -rf $pkg.Rcheck
     cd $pkg
     echo "current directory:"
     echo `pwd`
