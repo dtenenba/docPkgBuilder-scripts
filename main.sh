@@ -63,7 +63,7 @@ if [ "$NODE_NAME" = "master" ]; then
     do
         #R_LIBS_USER=$WORKSPACE/library 
         echo "Building $i..."
-        $HOME_OF_R/bin/R --vanilla -q -e "library(knitr);.libPaths(c("$WORKSPACE/library", .libPaths()));.libPaths();knit('$i')"
+        $HOME_OF_R/bin/R --vanilla -q -e "library(knitr);.libPaths(c('$WORKSPACE/library', .libPaths()));.libPaths();knit('$i')"
     done
     tar zcf $WORKSPACE/$pkg-vignettes.tar.gz .
     echo "Vignette tarball has been created."
