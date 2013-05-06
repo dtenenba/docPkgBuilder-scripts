@@ -63,5 +63,6 @@ if [ "$NODE_NAME" = "master" ]; then
     rm -f *.Rmd
     tar zcf $WORKSPACE/$pkg-vignettes.tar.gz .
     cp $WORKSPACE/$pkg-vignettes.tar.gz ~/docbuilder-output
-    echo ">>> Vignette tarball has been created."
+    echo ">>> Vignette tarball has been createdin the following location:"
+    echo ">>> http://docbuilder.bioconductor.org/docbuilder/$pkg-vignettes.tar.gz"
 fi
