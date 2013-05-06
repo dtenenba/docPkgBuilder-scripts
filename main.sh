@@ -16,7 +16,7 @@ cd $WORKSPACE
 for i in `svn st|grep "^?"|cut -d " " -f 8`
 do
     rm -rf $i
-end
+done
 
 rm -f $WORKSPACE/*.tar.gz
 $HOME_OF_R/bin/Rscript $BUILDER_SCRIPTS/docPkgBuilder-scripts/prerun.R
