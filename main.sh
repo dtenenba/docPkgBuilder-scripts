@@ -37,7 +37,7 @@ if [ "$NODE_NAME" = "master" ]; then
     cd $WORKSPACE
     rm -rf library
     mkdir library
-    $HOME_OF_R/bin/R CMD INSTALL --library=library $WORKSPACE/*.tar.gz
+    R_LIBS_USER=$WORKSPACE/library $HOME_OF_R/bin/R CMD INSTALL --library=library $WORKSPACE/*.tar.gz
 
     tar zxf *.tar.gz
     export pkg=`echo *.tar.gz | cut -d _ -f 1`
@@ -60,7 +60,8 @@ if [ "$NODE_NAME" = "master" ]; then
     fi
     for i in `ls *.Rmd`
     do
-        R_LIBS_USER=$WORKSPACE/library $HOME_OF_R/bin/R --vanilla -q -e "library(knitr);knit('$i')"
+        #R_LIBS_USER=$WORKSPACE/library 
+        $HOME_OF_R/bin/R --vanilla -q -e "library(knitr);.libPaths(c("$WORKSPACE/library", .libPaths()));knit('$i')"
     done
     tar zcf $WORKSPACE/$pkg-vignettes.tar.gz .
     echo "Vignette tarball has been created."
