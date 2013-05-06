@@ -14,11 +14,7 @@ mkdir $CHECK_DIR
 
 
 rm -f $WORKSPACE/*.tar.gz
-# uncomment this:
-#$HOME_OF_R/bin/Rscript $BUILDER_SCRIPTS/docPkgBuilder-scripts/prerun.R
-# uncomment this:
-###$HOME_OF_R/bin/R CMD build $WORKSPACE
-# remove this:
+$HOME_OF_R/bin/Rscript $BUILDER_SCRIPTS/docPkgBuilder-scripts/prerun.R
 echo "d0"
 echo "workspace is $WORKSPACE"
 echo "current dir is"
@@ -26,6 +22,9 @@ echo `pwd`
 cd $WORKSPACE
 echo "now current dir is"
 echo `pwd`
+# uncomment this:
+###$HOME_OF_R/bin/R CMD build $WORKSPACE
+# remove this:
 $HOME_OF_R/bin/R CMD build --no-vignettes $WORKSPACE
 echo "d1"
 # uncomment this:
