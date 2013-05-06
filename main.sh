@@ -37,7 +37,8 @@ if [ "$NODE_NAME" = "master" ]; then
     cd $WORKSPACE
     rm -rf library
     mkdir library
-    R_LIBS_USER=$WORKSPACE/library $HOME_OF_R/bin/R CMD INSTALL --library=library $WORKSPACE/*.tar.gz
+    #R_LIBS_USER=$WORKSPACE/library 
+    $HOME_OF_R/bin/R CMD INSTALL --library=library $WORKSPACE/*.tar.gz
 
     tar zxf *.tar.gz
     export pkg=`echo *.tar.gz | cut -d _ -f 1`
