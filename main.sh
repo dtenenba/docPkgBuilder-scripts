@@ -12,19 +12,23 @@ fi
 CHECK_DIR=$TMP/$BUILD_TAG
 mkdir $CHECK_DIR
 
+cd $WORKSPACE
+for i in `svn st|grep "^?"|cut -d " " -f 8`
+do
+    rm -rf $i
+end
 
 rm -f $WORKSPACE/*.tar.gz
 $HOME_OF_R/bin/Rscript $BUILDER_SCRIPTS/docPkgBuilder-scripts/prerun.R
 echo "workspace is $WORKSPACE"
-cd $WORKSPACE
 echo ">>> Running R CMD build:"
-$HOME_OF_R/bin/R CMD build $WORKSPACE
+#$HOME_OF_R/bin/R CMD build $WORKSPACE
 # remove this:
-#$HOME_OF_R/bin/R CMD build --no-vignettes $WORKSPACE
+$HOME_OF_R/bin/R CMD build --no-vignettes $WORKSPACE
 cd $CHECK_DIR
-echo ">>> Running R CMD check:"
-$HOME_OF_R/bin/R CMD check --no-vignettes $WORKSPACE/*.tar.gz
-# rm -rf $CHECK_DIR
+##echo ">>> Running R CMD check:"
+##$HOME_OF_R/bin/R CMD check --no-vignettes $WORKSPACE/*.tar.gz
+rm -rf $CHECK_DIR
 
 if [ "$NODE_NAME" = "master" ]; then
     echo "workspace is $WORKSPACE"
@@ -57,5 +61,6 @@ if [ "$NODE_NAME" = "master" ]; then
         $HOME_OF_R/bin/R --vanilla -q -e "library(knitr);.libPaths(c(file.path(Sys.getenv('WORKSPACE'),'library'), .libPaths()));knit('$i')"
     done
     tar zcf $WORKSPACE/$pkg-vignettes.tar.gz .
+    cp $WORKSPACE/$pkg-vignettes.tar.gz ~/docbuilder-output
     echo ">>> Vignette tarball has been created."
 fi
