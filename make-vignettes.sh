@@ -7,8 +7,6 @@ killall Xvfb || true
 killall Xvfb || true
 echo "killed those processes, now starting X"
 . /var/lib/jenkins/start-virtual-X.sh > /dev/null 2>&1
-# > /dev/null 2>&1 &
-echo "started X"
     
 echo "workspace is $WORKSPACE"
 cd $WORKSPACE
