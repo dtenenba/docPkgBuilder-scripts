@@ -38,6 +38,8 @@ if [ "$NODE_NAME" = "master" ]; then
     echo "killed those processes, now starting X"
     . /var/lib/jenkins/start-virtual-X.sh > /dev/null 2>&1 &
     echo "started X"
+    sleep 2
+    echo "awake"
     cd $WORKSPACE
     rm -rf library
     mkdir library
