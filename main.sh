@@ -14,7 +14,7 @@ mkdir $CHECK_DIR
 
 cd $WORKSPACE
 echo "JOB_NAME IS $JOB_NAME"
-rm -rf $JOB_NAME
+rm -rf `echo $JOB_NAME|cut -d / -f 1`
 
 rm -f $WORKSPACE/*.tar.gz
 $HOME_OF_R/bin/Rscript $BUILDER_SCRIPTS/docPkgBuilder-scripts/prerun.R
