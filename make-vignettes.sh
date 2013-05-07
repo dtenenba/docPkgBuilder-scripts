@@ -14,8 +14,8 @@ $HOME_OF_R/bin/R CMD build $WORKSPACE
 # remove this:
 #$HOME_OF_R/bin/R CMD build --no-vignettes $WORKSPACE
 cd $CHECK_DIR
-##echo ">>> Running R CMD check:"
-##$HOME_OF_R/bin/R CMD check --no-vignettes $WORKSPACE/*.tar.gz
+echo ">>> Running R CMD check:"
+$HOME_OF_R/bin/R CMD check --no-vignettes $WORKSPACE/*.tar.gz
 cd $WORKSPACE
 rm -rf $CHECK_DIR
 ## end of redundant bit
