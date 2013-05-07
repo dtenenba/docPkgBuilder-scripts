@@ -7,6 +7,7 @@ if [ -z "$TMP" ]; then
 fi
 
 CHECK_DIR=$TMP/$BUILD_TAG
+rm -rf $CHECK_DIR
 mkdir $CHECK_DIR
 
 cd $WORKSPACE
@@ -17,9 +18,11 @@ $HOME_OF_R/bin/Rscript $BUILDER_SCRIPTS/docPkgBuilder-scripts/prerun.R
 echo "workspace is $WORKSPACE"
 
 if [ "$NODE_NAME" = "master" ]; then
+    ## this script runs R CMD build and check on the master:
     bash $BUILDER_SCRIPTS/docPkgBuilder-scripts/make-vignettes.sh
 else
     echo ">>> Running R CMD build:"
+    ## if we're not master, build and check is run here:
     $HOME_OF_R/bin/R CMD build $WORKSPACE
     # remove this:
     #$HOME_OF_R/bin/R CMD build --no-vignettes $WORKSPACE
