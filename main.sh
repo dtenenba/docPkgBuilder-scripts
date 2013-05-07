@@ -32,6 +32,10 @@ rm -rf $CHECK_DIR
 
 if [ "$NODE_NAME" = "master" ]; then
     echo "workspace is $WORKSPACE"
+    killall Xvfb
+    killall Xvfb
+    killall Xvfb
+    . ~/start-virtual-X.sh
     cd $WORKSPACE
     rm -rf library
     mkdir library
