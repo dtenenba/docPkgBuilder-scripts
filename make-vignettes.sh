@@ -39,8 +39,12 @@ do
     echo ">>> Building $i..."
     $HOME_OF_R/bin/R --vanilla -q -e "library(knitr);.libPaths(c(file.path(Sys.getenv('WORKSPACE'),'library'), .libPaths()));knit('$i')"
 done
+killall Xvfb || true
+killall Xvfb || true
+killall Xvfb || true
+
 rm -f *.Rmd
 tar zcf $WORKSPACE/$pkg-vignettes.tar.gz .
 cp $WORKSPACE/$pkg-vignettes.tar.gz ~/docbuilder-output
-echo ">>> Vignette tarball has been createdin the following location:"
+echo ">>> Vignette tarball has been created in the following location:"
 echo ">>> http://docbuilder.bioconductor.org/docbuilder/$pkg-vignettes.tar.gz"
