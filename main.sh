@@ -13,10 +13,8 @@ CHECK_DIR=$TMP/$BUILD_TAG
 mkdir $CHECK_DIR
 
 cd $WORKSPACE
-for i in `svn st|grep "^?"|cut -d " " -f 8`
-do
-    rm -rf $i
-done
+echo "JOB_NAME IS $JOB_NAME"
+rm -rf $JOB_NAME
 
 rm -f $WORKSPACE/*.tar.gz
 $HOME_OF_R/bin/Rscript $BUILDER_SCRIPTS/docPkgBuilder-scripts/prerun.R
