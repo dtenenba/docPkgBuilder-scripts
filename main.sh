@@ -36,7 +36,7 @@ if [ "$NODE_NAME" = "master" ]; then
     killall Xvfb || true
     killall Xvfb || true
     echo "killed those processes, now starting X"
-    . ~/start-virtual-X.sh > /dev/null 2>&1
+    . /var/lib/jenkins/start-virtual-X.sh > /dev/null 2>&1
     echo "started X"
     cd $WORKSPACE
     rm -rf library
