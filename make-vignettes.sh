@@ -8,6 +8,19 @@ killall Xvfb || true
 echo "killed those processes, now starting X"
 . /var/lib/jenkins/start-virtual-X.sh > /dev/null 2>&1
     
+## redundant bit:
+echo ">>> Running R CMD build:"
+$HOME_OF_R/bin/R CMD build $WORKSPACE
+# remove this:
+#$HOME_OF_R/bin/R CMD build --no-vignettes $WORKSPACE
+cd $CHECK_DIR
+##echo ">>> Running R CMD check:"
+##$HOME_OF_R/bin/R CMD check --no-vignettes $WORKSPACE/*.tar.gz
+cd $WORKSPACE
+rm -rf $CHECK_DIR
+## end of redundant bit
+
+
 echo "workspace is $WORKSPACE"
 cd $WORKSPACE
 rm -rf library
