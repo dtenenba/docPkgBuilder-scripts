@@ -23,9 +23,14 @@ echo ">>> Running R CMD build:"
 #$HOME_OF_R/bin/R CMD build $WORKSPACE
 # remove this:
 $HOME_OF_R/bin/R CMD build --no-vignettes $WORKSPACE
+echo "about to cd to check dir"
 cd $CHECK_DIR
+echo "should be in check dir"
 ##echo ">>> Running R CMD check:"
 ##$HOME_OF_R/bin/R CMD check --no-vignettes $WORKSPACE/*.tar.gz
+echo "about to cd to workspace"
+cd $WORKSPACE
+echo "should be in workspace"
 rm -rf $CHECK_DIR
 
 if [ "$NODE_NAME" = "master" ]; then
