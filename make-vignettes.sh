@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 killall Xvfb || true
 killall Xvfb || true
 killall Xvfb || true
